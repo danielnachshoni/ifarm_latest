@@ -16,5 +16,3 @@ app.listen(PORT,
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 )
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
