@@ -1,4 +1,6 @@
 const express = require('express')
+const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const connectDB = require('./config/db')
@@ -21,17 +23,15 @@ const app = express()
 // Handlebars
 app.engine('.hbs',exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
-// app.engine('hbs', hbs({
-//     partialsDir : [
-//         path.join(__dirname, 'views/partials')
-//     ]
-// }));
+
 
 // SESSION
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI})  //(URI FROM.env file)
 }))
 
 // PASSPORT MIDDLEWARE
