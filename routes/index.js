@@ -2,17 +2,27 @@ const express = require('express')
 const router = express.Router()
 const { ensureAuth, ensureGuest} = require('../middleware/auth')
 
+const Orders = require('../models/orders')
+
 // login/landing page
 // @route GET / 
 
 
 // @desc    DASHBOARD
 // @route   GET /dashboard
-router.get('/dashboard', ensureAuth, (req, res)=>{
-    res.render('dashboard'), {
-        name: req.user.firstName,
-        
+router.get('/dashboard', ensureAuth, async (req, res)=>{
+    try{
+        const orders = await Orders.find({user: req.user.id}).lean()
+        res.render('dashboard', {
+            name: req.user.firstName,
+            lastName: req.user.lastName,
+            orders
+        })
+    }catch(err){
+        console.error(err)
+        res.render('error/500')
     }
+
 })
 
 // login/landing page
