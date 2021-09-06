@@ -21,11 +21,7 @@ const app = express()
 // Handlebars
 app.engine('.hbs',exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
-// app.engine('hbs', hbs({
-//     partialsDir : [
-//         path.join(__dirname, 'views/partials')
-//     ]
-// }));
+
 
 // SESSION
 app.use(session({
