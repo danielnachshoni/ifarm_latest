@@ -6,6 +6,13 @@ const Orders = require('../models/orders')
 
 // @desc    Show/add items
 // @route GET /orders/add
+router.get('/add', ensureAuth, (req,res)=>{
+    res.render('orders/add')
+})
+
+
+// @desc    Show/add items
+// @route GET /orders/add
 router.post('/', ensureAuth, async (req,res)=>{
     try{
         req.body.user = req.user.id
