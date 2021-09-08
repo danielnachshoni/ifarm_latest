@@ -20,4 +20,21 @@ router.post('/', ensureAuth, async (req,res)=>{
     }
 })
 
+// @desc    Show all items
+//  @route  GET /orders/
+router.get('/', ensureAuth, async (req,res)=>{
+     try {
+         const orders = await Orders.find({status: 'public'})
+            .populate('user')
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('orders/index', {orders,})
+
+     } catch (err){
+         console.error(err)
+         res.render('error/500')
+     }
+    }) 
+
+
 module.exports = router
