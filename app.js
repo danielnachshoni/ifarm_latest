@@ -19,6 +19,9 @@ connectDB()
 
 const app = express()
 
+// Body Parser
+app.use(express.urlencoded({ extended: false}))
+app.use(express.json())
 
 // Handlebars
 app.engine('.hbs',exphbs({defaultLayout: 'main', extname: '.hbs'}));
