@@ -6,7 +6,7 @@
 <h3>We hope you're hungry</h3>
 <p>Here are your items</p>
 
-{{#if orders}}
+{{#if order}}
     <table class="striped">
         <thead>
             <tr>
@@ -17,10 +17,10 @@
             </tr>
         </thead>
         <tbody>
-            {{#each orders}}
+            {{#each order}}
                 <tr>
                     <td><a href="/orders/{{_id}}"></a>{{title}}</td>
-                    <td>{{createdAt}}</td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
                     <td><Span class="dash-status">{{status}}</Span></td>
                     <td></td>
 
