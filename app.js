@@ -24,14 +24,10 @@ app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 
 // HandleBars Helpers
-const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs')
+const { formatDate } = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs',exphbs({helpers: { 
-    formatDate,
-    stripTags, 
-    truncate,
-    editIcon},
+app.engine('.hbs',exphbs({helpers: { formatDate,},
     defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
@@ -48,12 +44,6 @@ app.use(session({
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize())
 app.use(passport.session())
-
-// Global Variable
-app.use(function(req, res, next){
-    res.locals.user = req.user || null
-    next()
-})
 
 //STATIC FOLDER
 app.use(express.static(path.join(__dirname,'public')))
