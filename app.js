@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable linebreak-style */
 /* eslint-disable no-undef */
 const express = require("express")
@@ -10,6 +11,19 @@ const exphbs = require("express-handlebars")
 const path = require("path")
 const passport = require("passport")
 const session = require("express-session")
+=======
+const express = require('express')
+const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')
+const dotenv = require('dotenv')
+const morgan = require('morgan')
+const connectDB = require('./config/db')
+const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
+const path = require('path')
+const passport = require('passport')
+const session = require('express-session')
+>>>>>>> 03df465577d8d984623bded1c5540d2ca0c7f9b8
 
 //load config
 dotenv.config({ path: "./config/config.env" })
@@ -26,6 +40,7 @@ app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 
 // HandleBars Helpers
+<<<<<<< HEAD
 const { formatDate, stripTags, truncate, editIcon } = require("./helpers/hbs")
 
 // Handlebars
@@ -36,6 +51,20 @@ app.engine(".hbs",exphbs({helpers: {
 	editIcon},
 defaultLayout: "main", extname: ".hbs"}))
 app.set("view engine", ".hbs")
+=======
+const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs')
+
+// Handlebars
+app.engine('.hbs',exphbs({helpers: { 
+    formatDate,
+    stripTags, 
+    truncate,
+    editIcon,
+    select
+},
+    defaultLayout: 'main', extname: '.hbs'}));
+app.set('view engine', '.hbs');
+>>>>>>> 03df465577d8d984623bded1c5540d2ca0c7f9b8
 
 
 // SESSION
@@ -50,6 +79,17 @@ app.use(session({
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize())
 app.use(passport.session())
+
+//Method override
+app.use(
+    methodOverride(function (req, res){
+        if(req.body && typeof req.body==='object' && '_method' in req.body){
+            let method=req.body._method
+            delete req.body._method
+            return method
+        }
+    })
+)
 
 // Global Variable
 app.use(function(req, res, next){
