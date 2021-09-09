@@ -27,6 +27,28 @@ router.post('/', ensureAuth, async (req,res)=>{
     }
 })
 
+// @desc    Show more...
+// @route GET /orders/:id
+router.get('/:id', ensureAuth, async (req,res)=>{
+  try{
+    let order = await Orders.findById(req.params.id)
+    .populate('user')
+    .lean()
+
+    if(!order){
+      return res.render('error/404')
+    }
+    res.render('orders/show',{
+      order,
+    })
+  }
+  catch(err){
+    console.error(err)
+    res.render('error/404')
+
+  }
+})
+
 // @desc    Show all items
 //  @route  GET /orders/
 router.get('/', ensureAuth, async (req,res)=>{
@@ -104,6 +126,27 @@ router.delete('/:id', ensureAuth, async (req,res)=>{
     console.error(err)
     return res.render('error/500')
 
+  }
+})
+
+// @desc  User orders
+// @route GET /orders/user/:userid
+router.get('/user/:userId', ensureAuth, async (req,res)=>{
+  try{
+    const orders = await Orders.find({
+      user: req.params.userId,
+      status: 'public'
+    })
+    .populate('user')
+    .lean()
+
+    res.render('orders/index', {
+      orders
+    })
+  }
+  catch(err){
+    console.error(err)
+    res.render('error/500')
   }
 })
 
