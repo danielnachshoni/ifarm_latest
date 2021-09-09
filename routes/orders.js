@@ -59,7 +59,7 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
         res.redirect('/orders')
       } else {
         res.render('orders/edit', {
-          order,
+          order,    
         })
       }
     } catch (err) {
@@ -68,5 +68,43 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
     }
   })
 
+// @desc    Update order
+// @route PUT /orders/:id
+router.put('/:id', ensureAuth, async (req,res)=>{
+try{
+  let order = await Orders.findById(req.params.id).lean()
+
+  if(!order){
+    return res.render('error/404')
+  }
+
+  if (order.user != req.user.id) {
+    res.redirect('/orders')
+  } else {
+    order = await Orders.findOneAndUpdate({ _id: req.params.id}, req.body, {
+      new: true,
+      runValidators: true,
+    })
+    res.redirect('/dashboard')
+  }
+}catch(err){
+  console.error(err)
+  return res.render('error/500')
+  }
+})
+
+// @desc  DELETE oreder
+// @route DELETE /ders/:id
+router.delete('/:id', ensureAuth, async (req,res)=>{
+  try{
+    await Orders.remove({ _id: req.params.id})
+    res.redirect('/dashboard')
+  }
+  catch(err){
+    console.error(err)
+    return res.render('error/500')
+
+  }
+})
 
 module.exports = router

@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const connectDB = require('./config/db')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const path = require('path')
 const passport = require('passport')
 const session = require('express-session')
@@ -24,14 +25,16 @@ app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
 
 // HandleBars Helpers
-const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs')
+const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs')
 
 // Handlebars
 app.engine('.hbs',exphbs({helpers: { 
     formatDate,
     stripTags, 
     truncate,
-    editIcon},
+    editIcon,
+    select
+},
     defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
@@ -48,6 +51,17 @@ app.use(session({
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize())
 app.use(passport.session())
+
+//Method override
+app.use(
+    methodOverride(function (req, res){
+        if(req.body && typeof req.body==='object' && '_method' in req.body){
+            let method=req.body._method
+            delete req.body._method
+            return method
+        }
+    })
+)
 
 // Global Variable
 app.use(function(req, res, next){
