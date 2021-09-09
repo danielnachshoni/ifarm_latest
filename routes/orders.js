@@ -65,6 +65,24 @@ router.get('/', ensureAuth, async (req,res)=>{
      }
     }) 
 
+
+// // @desc    Show single item
+// // @route GET /orders/id:
+// router.get('/:id', ensureAuth, (req,res)=>{
+// try {
+//   let order= await Orders.findById(req.params.id)
+//   .populate('user').lean()
+
+//   if (!order){
+//     return res.render('error/404')
+//   }
+
+// } catch (error) {
+  
+// }
+// })
+
+
 // @desc    Show edit page
 // @route   GET /stories/edit/:id
 router.get('/edit/:id', ensureAuth, async (req, res) => {

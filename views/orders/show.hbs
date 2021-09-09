@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col s12 m8">
+        <h3>{{order.title}}
+            <small>{{{editIcon order.user user order._id false}}}</small>
+        </h3>
+        <div class="card order">
+            <div class="card-content">
+                <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
+                {{{order.body}}}
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <span class="card-title">{{order.user.displayName}}</span>
+                <img src="{{order.user.image}}" class="circle responsive-img img-small">
+            </div>
+            <div class="card-action">
+                <a href="/orders/user/{{order.user._id}}">More From {{order.user.firstName}}</a>
+            </div>
+        </div>
+    </div>
+</div>

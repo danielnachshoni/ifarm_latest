@@ -21,12 +21,14 @@
                 <tr>
                     <td><a href="/orders/{{_id}}">{{title}}</a></td>
                     <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                    <td><Span class="dash-status">{{status}}</Span></td>
-                    <td>
-                        <a href="/orders/edit/{{_id}}" class="btn btn-float grey"><i class="fas fa-edit grey"></i></a>
-                    <form action="/orders/{{_id}}" method="POST" id="delete-form">
-                    <input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn dark red"><i class="fas fa-trash"></i>
 
+                    <td><Span class="dash-status">{{status}}</Span></td>
+                    <td><a href="/orders/edit/{{_id}}" class="btn btn-float grey">
+                            <i class="fas fa-edit grey"></i>
+                        </a>
+                    <form action="/orders/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn dark red">
+                            <i class="fas fa-trash"></i>
                     </button> </form>
                     </td>
 
