@@ -43,5 +43,30 @@ router.get('/', ensureAuth, async (req,res)=>{
      }
     }) 
 
+// @desc    Show edit page
+// @route   GET /stories/edit/:id
+router.get('/edit/:id', ensureAuth, async (req, res) => {
+    try {
+      const order = await Orders.findOne({
+        _id: req.params.id,
+      }).lean()
+  
+      if (!order) {
+        return res.render('error/404')
+      }
+  
+      if (order.user != req.user.id) {
+        res.redirect('/orders')
+      } else {
+        res.render('orders/edit', {
+          order,
+        })
+      }
+    } catch (err) {
+      console.error(err)
+      return res.render('error/500')
+    }
+  })
+
 
 module.exports = router
