@@ -14,10 +14,10 @@ const OrdersSchema = new mongoose.Schema({
         required: true
     },
 
-    status: {
+    price: {
         type: String,
-        default: 'public',
-        enum: ['public','private']
+        required: true,
+        trim: true
     },
 
     user: {

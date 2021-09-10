@@ -1,4 +1,4 @@
-<h3>edit Order</h3>
+<h3>edit product for selling</h3>
 <div class="row">
     <form action="/orders/{{order._id}}" method="POST" class="col s12">
     <input type="hidden" name="_method" value="PUT">
@@ -11,19 +11,20 @@
 
         <div class="row">
             <div class="input-field">
-                <select id="status" name="status">
+                {{!-- <select id="status" name="status">
                     {{#select order.status}}
                     <option value="public" selected>Public</option>
                     <option value="private">Private</option>
                     {{/select}}
-                </select>
-                <label for="status">Status</label>
+                </select> --}}
+                <input type="number" id="number-input" name="price" step="any" pattern="[0-9\.\-]*" value="{{order.price}}">
+                <label for="status">price(₪)/kg</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field">
-                <h5>Tell Us Your Story:</h5>
+                <h5>Description of products:</h5>
                 <textarea id="body" name="body">{{order.body}}</textarea>
             </div>
         </div>

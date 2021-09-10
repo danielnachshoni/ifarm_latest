@@ -1,9 +1,9 @@
 {{!-- homepage after logging in --}}
 
-<h1>Profile</h1>
-<h3>Welcome {{name}}</h3>
-<h3>Are you feeling {{lastName}} today?</h3>
-<h3>We hope you're hungry</h3>
+<h3>Welcome</h3>
+<br>
+<h5>{{name}} {{lastName}}</h5>
+<p><br><br></p>
 <p>Here are your items</p>
 
 {{#if order}}
@@ -11,8 +11,8 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Price/Kg</th>
                 <th>Date</th>
-                <th>Status</th>
                 <th></th>
             </tr>
         </thead>
@@ -20,8 +20,8 @@
             {{#each order}}
                 <tr>
                     <td><a href="/orders/{{_id}}">{{title}}</a></td>
+                    <td><Span class="dash-status">{{price}}₪</Span></td>
                     <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                    <td><Span class="dash-status">{{status}}</Span></td>
                     <td>
                         <a href="/orders/edit/{{_id}}" class="btn btn-float grey"><i class="fas fa-edit grey"></i></a>
                     <form action="/orders/{{_id}}" method="POST" id="delete-form">
@@ -38,5 +38,5 @@
     </table>
 
 {{else}}
-    <p>Your basket is empty. </p>
+    <p>Your cart is empty. </p>
 {{/if}}
