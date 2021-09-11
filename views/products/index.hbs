@@ -1,6 +1,6 @@
-<h1>Orders</h1>
+<h1>Products</h1>
 <div class="row">
-    {{#each orders}}
+    {{#each products}}
     <div class="col s12 m4">
         <div class="card">
             <div class="card-image">
@@ -13,15 +13,15 @@
                 <br>
                 <div class="chip">
                     <img src="{{user.image}}" alt="">
-                    <a href="/orders/user/{{user._id}}">{{user.displayName}}</a>
+                    <a href="/products/user/{{user._id}}">{{user.displayName}}</a>
                 </div>
             </div>
             <div class="card-action center-align">
-                <a href="/orders/{{_id}}" class="btn grey">Read More</a>
+                <a href="/products/{{_id}}" class="btn grey">Read More</a>
             </div>
         </div>
     </div>
     {{else}}
-    <p>No orders to display</p>
+    <p>No products to display</p>
     {{/each}}
 </div>

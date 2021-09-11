@@ -1,17 +1,17 @@
 <h3>edit product for selling</h3>
 <div class="row">
-    <form action="/orders/{{order._id}}" method="POST" class="col s12">
+    <form action="/products/{{product._id}}" method="POST" class="col s12">
     <input type="hidden" name="_method" value="PUT">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="title" name="title" value="{{order.title}}">
+                <input type="text" id="title" name="title" value="{{product.title}}">
                 <label for="title">Title</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field">
-                <input type="number" id="number-input" name="price" step="any" pattern="[0-9\.\-]*" value="{{order.price}}">
+                <input type="number" id="number-input" name="price" step="any" pattern="[0-9\.\-]*" value="{{product.price}}">
                 <label for="status">price(₪)/kg</label>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="input-field">
                 <h5>Description of products:</h5>
-                <textarea id="body" name="body">{{order.body}}</textarea>
+                <textarea id="body" name="body">{{product.body}}</textarea>
             </div>
         </div>
 
