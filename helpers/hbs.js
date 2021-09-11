@@ -17,19 +17,7 @@ module.exports = {
 	},
 	stripTags: function (input) { return input.replace(/<(?:.|\n)*?>/gm, "") }, 
 
-<<<<<<< HEAD
-	editIcon: function (orderUser, loggedUser, orderId, floating = true) {
-		if (orderUser._id.toString() == loggedUser._id.toString()) {
-			if (floating) {
-				return `<a href="/orders/edit/${orderId}" class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>`
-			} else {
-				return `<a href="/orders/edit/${orderId}"><i class="fas fa-edit"></i></a>`
-			}
-		} else {
-			return ""
-		}
-	},
-=======
+
     editIcon: function (orderUser, loggedUser, orderId, floating = true) {
         if (orderUser._id.toString() == loggedUser._id.toString()) {
           if (floating) {
@@ -53,5 +41,5 @@ module.exports = {
           ' selected="selected"$&'
         )
       },
->>>>>>> 03df465577d8d984623bded1c5540d2ca0c7f9b8
+
 }
