@@ -1,0 +1,42 @@
+{{!-- homepage after logging in --}}
+
+<h3>Welcome</h3>
+<br>
+<h5>{{name}} {{lastName}}</h5>
+<p><br><br></p>
+<p>Here are your items</p>
+
+{{#if order}}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price/Kg</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each order}}
+                <tr>
+                    <td><a href="/orders/{{_id}}">{{title}}</a></td>
+                    <td><Span class="dash-status">{{price}}₪</Span></td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                    <td>
+                        <a href="/orders/edit/{{_id}}" class="btn btn-float grey"><i class="fas fa-edit grey"></i></a>
+                    <form action="/orders/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn dark red"><i class="fas fa-trash"></i>
+
+                    </button> </form>
+                    </td>
+
+
+                </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+
+{{else}}
+    <p>Your cart is empty. </p>
+{{/if}}
