@@ -16,8 +16,13 @@
                 </div>
             </div>
             <div class="card-action center-align">
+                
                 <a href="/orders/{{_id}}" class="btn grey">Read More</a>
             </div>
+            <div class="card-action center-align">
+                {{!-- when clicked added item to user's cart database --}}
+                <a href="/orders/{{_id}}" class="btn orange">add to cart</a>
+            </div> 
         </div>
     </div>
     {{else}}

@@ -1,13 +1,277 @@
 {{!-- homepage after logging in --}}
 
-<h3>Welcome</h3>
+{{!-- <h3>Welcome</h3>
 <br>
 <h5>{{name}} {{lastName}}</h5>
 <p><br><br></p>
-<p>Here are your items</p>
+<p>Here are your items</p> --}}
 
-{{#if order}}
-    <table class="striped">
+{{!-- homepage after logging in
+
+<div class="row">
+    <div class="col s12 m8">
+        <h3>{{order.title}}
+            <small>{{{editIcon order.user user order._id false}}}</small>
+        </h3>
+        <div class="card order">
+            <div class="card-content">
+                <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
+                {{{order.body}}}
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="card center-align">
+            <div class="card-content">
+                <span class="card-title">{{order.user.displayName}}</span>
+                <img src="{{order.user.image}}" class="circle responsive-img img-small">
+            </div>
+            <div class="card-action">
+                <a href="/orders/user/{{order.user._id}}">More From {{order.user.firstName}}</a>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Profile</title>
+
+
+    <style>
+        section{
+            paddding:6px 0;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<section id="intro">
+<div class="container-lg">
+
+
+
+<div class="row g-4 justify-content-center align-items-center">
+    
+    <div class="col-md-5 text-center text-md-center">
+        <h5>
+            <div class="display-2">{{name}} {{lastName}}</div>
+            <div class="display-5 text-muted">Your profile</div>
+        </h5>
+        
+    </div>
+</div>
+<div class="row g-4 justify-content-center align-items-center">
+    <div class="col-md-5 text-center text-md-center">
+        <div class="btn-group">
+
+
+
+            <!--#####################################  History button ############################-->
+
+<button type="button" class="btn btn-outline-secondary border" data-bs-toggle="modal" data-bs-target="#exampleModalButton">
+                History
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalButton" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">History</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="m-3 p-3 rounded border-left border-right border-5 border-success">
+                        <p class="lead">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">You buy from me</li>
+                                <li class="list-group-item">I buy from you</li>
+                                <li class="list-group-item">He buy from him</li>
+                                <li class="list-group-item">Him buy from you</li>
+                                <li class="list-group-item">and and you know il'l shut the fuck up thank you very much it was honor</li>
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">A fourth item</li>
+                                <li class="list-group-item">And a fifth one</li>
+                            </ul>
+                        </p>
+                    </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                </div>
+
+
+<!--##############################################################################################-->            
+
+
+
+<!--#####################################  About button ############################-->
+                            <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary border" data-bs-toggle="modal" data-bs-target="#exampleModalAbout">
+                About
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalAbout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">About</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="m-3 p-3 rounded border border-5 border-success">
+                        <p class="lead">
+                            first Name: {{name}}
+                            <br>Last Name: {{lastName}}
+                            <br>Phone Number: 052-234-0394
+                            <br>Address: sha'ar yashuv
+                            <br>Petts: cat 
+                            <br>Created At: {{createdAt}}
+                        </p>
+                    </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                </div>
+<!--##############################################################################################-->
+
+<!--#####################################  Reviews button ############################-->
+
+<button type="button" class="btn btn-outline-secondary border" data-bs-toggle="modal" data-bs-target="#exampleModalReviews">
+                Reviews
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalReviews" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reviews</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="m-3 p-3 rounded border border-5 border-success">
+                        <p class="lead">
+                            ya ya this is ****** for you!
+                        </p>
+                    </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                </div>
+
+
+<!--##############################################################################################-->
+
+
+<!--#####################################  Favorite button ############################-->
+
+<button type="button" class="btn btn-outline-secondary border" data-bs-toggle="modal" data-bs-target="#exampleModalFavorite">
+                Favorite
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalFavorite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Favorite</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="m-3 p-3 rounded border border-5 border-success">
+                        <p class="lead">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://youtu.be/iP30bPnz-nU" title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                        </p>
+                    </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                </div>
+
+
+<!--##############################################################################################-->
+
+            
+        </div>
+    </div>
+    <div class="col-md-5 text-center text-md-center">
+
+
+
+<!--#####################################  Favorite button ############################-->
+
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModalMessages">
+                Messages
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalMessages" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Messages</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="m-3 p-3 rounded border border-5 ">
+                        
+                            
+                            <ul class="list-group lead">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    
+                                    Message from Nahum
+                                    <span class="badge bg-primary rounded-pill text-dark">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Message from Dani
+                                    <span class="badge bg-primary rounded-pill text-dark">2</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                   Message from tomer
+                                    <span class="badge bg-primary rounded-pill text-dark">1</span>
+                                </li>
+                            </ul>
+
+                      
+                    </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                </div>
+
+
+<!--##############################################################################################-->
+
+
+
+
+        <button class="btn btn-outline-primary">Edit Profile</button>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {{#if order}}
+            <table class="striped">
         <thead>
             <tr>
                 <th>Title</th>
@@ -40,3 +304,46 @@
 {{else}}
     <p>Your cart is empty. </p>
 {{/if}}
+    </div>
+</div>
+</div>
+</section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+{{!-- {{!-- {{#if order}} --}}
+    {{!-- <table class="striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price/Kg</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each order}}
+                <tr>
+                    <td><a href="/orders/{{_id}}">{{title}}</a></td>
+                    <td><Span class="dash-status">{{price}}₪</Span></td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                    <td>
+                        <a href="/orders/edit/{{_id}}" class="btn btn-float grey"><i class="fas fa-edit grey"></i></a>
+                    <form action="/orders/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn dark red"><i class="fas fa-trash"></i>
+
+                    </button> </form>
+                    </td>
+
+
+                </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+
+{{else}}
+    <p>Your cart is empty. </p>
+{{/if}} --}}
