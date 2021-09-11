@@ -1,39 +1,38 @@
 // orders.js = Story.js
 
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const OrdersSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        trim: true
-    },
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    body: {
-        type: String,
-        required: true
-    },
+  body: {
+    type: String,
+    required: true,
+  },
 
-    price: {
-        type: String,
-        required: true,
-        trim: true
-    },
+  price: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 
-    image: {
-        type: String,
-    },
+  image: {
+    type: String,
+  },
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 })
 
-module.exports = mongoose.model('Order', OrdersSchema)
+module.exports = mongoose.model("Order", OrdersSchema)
