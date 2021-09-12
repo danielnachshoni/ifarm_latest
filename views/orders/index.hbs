@@ -1,4 +1,4 @@
-<h1>Orders</h1>
+<h3>Products</h3>
 <div class="row">
     {{#each orders}}
     <div class="col s12 m4">
@@ -102,14 +102,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 </head>
 <body>
-<button class="open-button" onclick="openForm()">blabla</button>
+{{!-- <button class="open-button" onclick="openForm()">blabla</button> --}}
 
 <div class="form-popup" id="myForm">
   <form action="/action_page.php" class="form-container">
     <h5>amount in kg</h5>
 
-    <label for="email"><b></b></label>
-    <input type="number" placeholder="enter amount" name="email" required>
+    <input type="number" placeholder="enter amount" required>
 
     <button type="submit" class="btn">enter amount</button>
     <button type="button" class="btn cancel" onclick="closeForm()">cancel</button>
@@ -130,7 +129,7 @@ function closeForm() {
 </html>
 {{!-- end of test --}}
 
-                <a href="/orders/{{_id}}" class="btn orange">add to cart</a>
+                <button onclick="openForm()" class="btn orange">add to cart</button></a>
             </div> 
         </div>
     </div>

@@ -23,7 +23,29 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
   }
 })
 
-// login/landing page
+// @desc    DASHBOARD
+// @route   GET /dashboard
+router.get("/shoppingcart", ensureAuth, async (req, res) => {
+  try {
+    const order = await Orders.find({ user: req.user.id }).lean()
+    res.render("shoppingcart", {
+      name: req.user.firstName,
+      lastName: req.user.lastName,
+      order,
+    })
+  } catch (err) {
+    console.error(err)
+    res.render("error/500")
+  }
+})
+
+// @desc  SHOPPING-CART
+// @route GET /cart
+//router.get("/shoppingcart", ensureGuest, (req, res) => {
+  //res.render("shoppingcart", { layout: "shoppingcart" })
+//})
+
+// @desc  login/landing page
 // @route GET /
 router.get("/", ensureGuest, (req, res) => {
   res.render("login", { layout: "login" })
