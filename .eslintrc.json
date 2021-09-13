@@ -21,7 +21,7 @@
             "off"
         ],
         "quotes": [
-            "error",
+            "warn",
             "double"
         ],
         "no-unused-vars": [
