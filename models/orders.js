@@ -11,7 +11,7 @@ const OrdersSchema = new mongoose.Schema({
 
   body: {
     type: String,
-    required: true,
+    required: false,
   },
 
   price: {

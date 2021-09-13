@@ -128,11 +128,9 @@ router.get("/user/:userId", ensureAuth, async (req, res) => {
   try {
     const orders = await Orders.find({
       user: req.params.userId,
-      status: "public",
     })
       .populate("user")
       .lean()
-
     res.render("orders/index", {
       orders,
     })

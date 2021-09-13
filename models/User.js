@@ -29,10 +29,13 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  Cart: {
-    type: Array,
-    required: true,
-  },
+  Cart: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "orders",
+      qnty: Number,
+    },
+  ],
 })
 
 module.exports = mongoose.model("User", UserSchema)
