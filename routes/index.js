@@ -27,36 +27,16 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
 
 router.post("/", ensureAuth, async (req, res) => {
   try {
-    const _order = await Orders.find({ user: req.order }).lean()
     const _user = req.user
     var toAdd = { orders: req.body.update, qnty: req.body.amount }
+    _user.Cart.push(toAdd)
+    _user.save()
 
-    console.log(_user.Cart)
-    // _user.Cart.console.log(_user.Cart)
-
-    console.log(req.body)
-    // req.user.push(friend)
-    // console.log(req.user)
-    Users.findOneAndUpdate(
-      {
-        _id: req.user._id,
-      },
-      {
-        $push: {
-          Cart: toAdd,
-        },
-      }
-    )
-    // console.log(Users.find({ user: req.user.id }))
     // console.log(_user.Cart)
-    console.log(_user)
-
-    // req.body.user = req.user.id
-    // await Orders.create(req.body)
     res.redirect("/shoppingcart")
   } catch (err) {
     console.error(err)
-    res.render("/error/500")
+    res.render("error/500")
   }
 })
 

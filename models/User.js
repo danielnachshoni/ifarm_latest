@@ -29,13 +29,14 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  Cart: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "orders",
-      qnty: Number,
-    },
-  ],
+  Cart: {
+    type: [
+      {
+        orders: { type: mongoose.Schema.Types.ObjectId },
+        qnty: { type: Number },
+      },
+    ],
+  },
 })
 
 module.exports = mongoose.model("User", UserSchema)
