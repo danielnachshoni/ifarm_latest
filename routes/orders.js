@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const { ensureAuth } = require("../middleware/auth")
 const Orders = require("../models/orders")
+const User = require("../models/User")
 
 // @desc Show/add items  @route GET /orders/add
 router.get("/add", ensureAuth, (req, res) => {
@@ -121,7 +122,21 @@ router.delete("/:id", ensureAuth, async (req, res) => {
     return res.render("error/500")
   }
 })
+router.get("/add-to-cart/:product-id/:amount", (req, res) => {
+const cart = {
+  prodactId: req.params.product-id,
+  amount: req.params.amount
+}
+  User.findOneAndUpdate({ _id: req.user.id }, 
 
+    cart.push(cart)//,
+  //   {
+  //   new: true,
+  //   runValidators: true,
+  // }
+  )
+  res.redirect("/orders")
+} )
 // @desc  User orders
 // @route GET /orders/user/:userid
 router.get("/user/:userId", ensureAuth, async (req, res) => {

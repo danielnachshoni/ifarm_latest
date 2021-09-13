@@ -105,14 +105,14 @@ body {font-family: Arial, Helvetica, sans-serif;}
 {{!-- <button class="open-button" onclick="openForm()">blabla</button> --}}
 
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  {{!-- <form action="/order/add-to-cart" class="form-container"> --}}
     <h5>amount in kg</h5>
 
-    <input type="number" placeholder="enter amount" required>
+    <input type="number" placeholder="enter amount" id="amount" required>
 
-    <button type="submit" class="btn">enter amount</button>
+    <a onclick="addAmount()" class="btn">enter amount</a>
     <button type="button" class="btn cancel" onclick="closeForm()">cancel</button>
-  </form>
+  {{!-- </form> --}}
 </div>
 
 <script>
@@ -122,6 +122,11 @@ function openForm() {
 
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
+}
+
+function addAmount(){
+  const amont = document.getElementById("amount").value;
+  window.location.href="/order/add-to-car/{{_id}}/{{amount}}"
 }
 </script>
 
@@ -133,6 +138,8 @@ function closeForm() {
             </div> 
         </div>
     </div>
+    {{if}}
+    
     {{else}}
     <p>No orders to display</p>
     {{/each}}

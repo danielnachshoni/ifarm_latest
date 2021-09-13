@@ -21,18 +21,23 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
 
-  image: {
-    type: String,
-  },
+  image: String,
 
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  Cart: {
-    type: Array,
-    required: true,
-  },
+  cart:[{
+    prodactId:{
+      type:String,
+      require:true
+    },
+    amount:{
+      type:String,
+      require:true
+    }
+  }],
 })
+
 
 module.exports = mongoose.model("User", UserSchema)
