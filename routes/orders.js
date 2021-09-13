@@ -61,7 +61,7 @@ router.get("/", ensureAuth, async (req, res) => {
 })
 
 // @desc    Show edit page
-// @route   GET /stories/edit/:id
+// @route   GET /orders/edit/:id
 router.get("/edit/:id", ensureAuth, async (req, res) => {
   try {
     const order = await Orders.findOne({

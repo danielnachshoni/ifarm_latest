@@ -8,6 +8,15 @@
                 <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
                 {{{order.body}}}
             </div>
+                        <div class="card-action">
+                <form action="/" method="POST" class="form-container">
+                    <h5>amount in kg</h5>
+                    <input type="number" name="amount" placeholder="enter amount(wight)" required>
+                    <button type="submit" class="btn" name="update" value="{{order._id}}">enter amount</button>
+
+                    <button type="button" class="btn cancel" onclick="closeForm()">cancel</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="col s12 m4">
