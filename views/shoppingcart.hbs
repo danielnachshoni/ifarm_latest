@@ -37,21 +37,15 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Price/Kg</th>
-                                        <th>Title</th>
-                                        <th>Price/Kg</th>
-                                        <th>Title</th>
-                                        <th>Price/Kg</th>
-
                                     </tr>
-                                </thead>
-                                
+                                </thead>                              
                                 <tbody>
                                     {{#each cart}}
                                     <tr>
                                         {{#each this}}
 
-                                        <td>{{this.qnty}}</td>
-                                        <td>{{this.orders}}</td>
+                                        <td><span>{{this.qnty}}</span></td>
+                                        <td><span>{{this.orders}}</span></td>
 
                                         {{/each}}
                                     </tr>
