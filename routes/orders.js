@@ -49,7 +49,7 @@ router.get("/:id", ensureAuth, async (req, res) => {
 //  @route  GET /orders/
 router.get("/", ensureAuth, async (req, res) => {
   try {
-    const orders = await Orders.find({ status: "public" })
+    const orders = await Orders.find({})
       .populate("user")
       .sort({ createdAt: "desc" })
       .lean()
