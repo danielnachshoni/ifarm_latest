@@ -31,6 +31,7 @@ const {
   truncate,
   editIcon,
   select,
+  multiply,
 } = require("./helpers/hbs")
 
 // Handlebars
@@ -43,6 +44,7 @@ app.engine(
       truncate,
       editIcon,
       select,
+      multiply,
     },
     defaultLayout: "main",
     extname: ".hbs",

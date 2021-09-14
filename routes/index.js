@@ -66,6 +66,7 @@ router.get("/shoppingcart", ensureAuth, async (req, res) => {
     res.render("shoppingcart", {
       name: req.user.firstName,
       lastName: req.user.lastName,
+      img: req.user.image,
       cart: req.user.Cart,
       _user,
     })

@@ -19,11 +19,11 @@
         <div class="container-lg">
             <div class="row g-4 justify-content-center align-items-center">
                 <div class="col-md-5 text-center text-md-center">
-                    <h5>
-                        <div class="display-2">{{name}} {{lastName}}</div>
-                        <br>
+                    <h6>
                         <img src="{{img}}" style="border-radius: 20%" alt="">
-                    </h5>
+                        <div class="display-3" >{{name}} {{lastName}}'s shopping cart:</div>
+                        <br>
+                    </h6>
                 </div>
             </div>
             <div class="row g-4 justify-content-center align-items-center">
@@ -49,11 +49,13 @@
                                         <td><span>{{this.prod_name}}</span></td>
                                         <td><span>{{this.qnty}}</span></td>
                                         <td><span>{{this.price}}</span></td>
-                                        <td><span>{{ (multiply this.qnty) this.price}}</span></td>
-                                        <td> <a href="" class="btn btn-float blue"><i class="far fa-credit-card blue"></i></a>
+                                        <td><span>{{multiply this.qnty this.price}}</span></td>
+                                        <td> <a href="" class="btn btn-float blue"><i
+                                                    class="far fa-credit-card blue"></i></a>
                                             <form action="/{{this._id}}" method="POST" id="delete-form">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn dark red"><i class="fas fa-trash"></i></button>
+                                                <button type="submit" class="btn dark red"><i
+                                                        class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
                                         {{/each}}
