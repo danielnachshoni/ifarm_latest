@@ -35,14 +35,26 @@ router.post("/", ensureAuth, async (req, res) => {
     }
     console.log(toAdd)
     _user.Cart.push(toAdd)
-    // _user.populate("Cart.orders")
     _user.save()
 
-    console.log(_user.Cart)
     res.redirect("/shoppingcart")
   } catch (err) {
     console.error(err)
     res.render("error/500")
+  }
+})
+
+//delete item from shopping cart
+router.delete("/:id", ensureAuth, async (req, res) => {
+  try {
+    const _user = req.user
+    console.log(req.user.id)
+    _user.Cart.pull({ _id: req.params.id })
+    _user.save()
+    res.redirect("/shoppingcart")
+  } catch (err) {
+    console.error(err)
+    return res.render("error/500")
   }
 })
 
@@ -73,29 +85,6 @@ router.post("/", ensureAuth, async (req, res) => {
     res.render("error/500")
   }
 })
-
-// const orders = await Orders.find({ status: "public" })
-// .populate("user")
-// .sort({ createdAt: "desc" })
-// .lean()
-
-// // @desc    DASHBOARD
-// // @route   GET /dashboard
-// router.get("/shoppingcart", ensureAuth, async (req, res) => {
-//   try {
-//     const order = await Orders.find({ user: req.user.id })
-//       .populate("Cart")
-//       .lean()
-//     res.render("shoppingcart", {
-//       name: req.user.firstName,
-//       lastName: req.user.lastName,
-//       order,
-//     })
-//   } catch (err) {
-//     console.error(err)
-//     res.render("error/500")
-//   }
-// })
 
 // @desc  login/landing page
 // @route GET /

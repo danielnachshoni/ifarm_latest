@@ -37,22 +37,32 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Price/Kg</th>
+                                        <th>amount </th>
+                                        <th>Price/Kg</th>
                                     </tr>
                                 </thead>
                                 {{#each cart}}
-                                <tbody>                                    
+                                <tbody>
                                     <tr>
                                         {{#each this}}
+                                        <td><Span class="dash-status">{{this.prod_name}}₪</Span></td>
                                         <td><span>{{this.prod_name}}</span></td>
                                         <td><span>{{this.qnty}}</span></td>
                                         <td><span>{{this.price}}</span></td>
+                                        <td><span>{{ (multiply this.qnty) this.price}}</span></td>
+                                        <td> <a href="" class="btn btn-float blue"><i class="far fa-credit-card blue"></i></a>
+                                            <form action="/{{this._id}}" method="POST" id="delete-form">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn dark red"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
                                         {{/each}}
                                     </tr>
                                     {{/each}}
                                 </tbody>
                             </table>
                             {{else}}
-                            <p>Your cart is empty. </p>
+                            <p>Your shopping cart is empty. </p>
                             {{/if}}
                         </div>
                     </div>
