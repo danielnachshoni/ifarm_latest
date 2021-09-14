@@ -32,7 +32,9 @@ const UserSchema = new mongoose.Schema({
   Cart: {
     type: [
       {
-        orders: { type: mongoose.Schema.Types.ObjectId },
+        prod_id: { type: String },
+        prod_name: { type: String },
+        price: { type: Number },
         qnty: { type: Number },
       },
     ],

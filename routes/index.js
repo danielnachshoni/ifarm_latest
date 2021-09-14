@@ -27,11 +27,18 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
 router.post("/", ensureAuth, async (req, res) => {
   try {
     const _user = req.user
-    var toAdd = { orders: req.body.update, qnty: req.body.amount }
+    var toAdd = {
+      prod_id: req.body.update,
+      qnty: req.body.amount,
+      prod_name: req.body.var2,
+      price: req.body.var1,
+    }
+    console.log(toAdd)
     _user.Cart.push(toAdd)
+    // _user.populate("Cart.orders")
     _user.save()
 
-    // console.log(_user.Cart)
+    console.log(_user.Cart)
     res.redirect("/shoppingcart")
   } catch (err) {
     console.error(err)
@@ -43,16 +50,11 @@ router.post("/", ensureAuth, async (req, res) => {
 // @route   GET /shoppingcart
 router.get("/shoppingcart", ensureAuth, async (req, res) => {
   try {
-    const _user = await Users.find({ user: req.user.id })
-      .populate("Cart.orders")
-      .lean()
+    const _user = await Users.find({ user: req.user.id }).lean()
     res.render("shoppingcart", {
       name: req.user.firstName,
       lastName: req.user.lastName,
-      img: req.user.image,
       cart: req.user.Cart,
-      // orders: _user.Cart.orders,
-      // qnty: _user.Cart.qnty,
       _user,
     })
   } catch (err) {

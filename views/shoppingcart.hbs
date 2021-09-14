@@ -9,7 +9,7 @@
     <title>Profile</title>
     <style>
         section {
-            paddding: 6px 0;
+            padding: 6px 0;
         }
     </style>
 </head>
@@ -38,21 +38,18 @@
                                         <th>Title</th>
                                         <th>Price/Kg</th>
                                     </tr>
-                                </thead>                              
-                                <tbody>
-                                    {{#each cart}}
+                                </thead>
+                                {{#each cart}}
+                                <tbody>                                    
                                     <tr>
                                         {{#each this}}
-                                        {{!-- <p>dsasadsadas</p> --}}
+                                        <td><span>{{this.prod_name}}</span></td>
                                         <td><span>{{this.qnty}}</span></td>
-                                        <td><span>{{this.orders}}</span></td>
-
+                                        <td><span>{{this.price}}</span></td>
                                         {{/each}}
                                     </tr>
-                                {{/each}}
-
+                                    {{/each}}
                                 </tbody>
-
                             </table>
                             {{else}}
                             <p>Your cart is empty. </p>

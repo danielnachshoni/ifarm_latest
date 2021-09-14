@@ -5,14 +5,17 @@
         </h3>
         <div class="card order">
             <div class="card-content">
-                <span class="card-title">{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</span>
-                {{{order.body}}}
+                <p style="font-size: 20px;">Item description:<br> <span style="font-weight: bold;"> {{{order.body}}}</span></p>
+                <p style="font-size: 16px;">Price for 1 kg: <br><span style="font-weight: bold; font-size: 20px;">{{{order.price}}}</span></p>
             </div>
-                        <div class="card-action">
+            <div class="card-action">
                 <form action="/" method="POST" class="form-container">
                     <h5>amount in kg</h5>
                     <input type="number" name="amount" placeholder="enter amount(wight)" required>
-                    <button type="submit" class="btn" name="update" value="{{order._id}}">enter amount</button>
+                    <input type="hidden" name="var1" value="{{order.price}}">
+                    <input type="hidden" name="var2" value="{{order.title}}">
+                    <button type="submit" class="btn" name="update" value="{{order._id}}"
+                        ,value="{{order.price}} ">enter amount</button>
 
                     <button type="button" class="btn cancel" onclick="closeForm()">cancel</button>
                 </form>
