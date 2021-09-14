@@ -4,9 +4,6 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth")
 const Orders = require("../models/orders")
 const Users = require("../models/User")
 
-// login/landing page
-// @route GET /
-
 // @desc    DASHBOARD
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
@@ -25,6 +22,8 @@ router.get("/dashboard", ensureAuth, async (req, res) => {
   }
 })
 
+// @desc    shopping catr
+// @route   post /order/:id
 router.post("/", ensureAuth, async (req, res) => {
   try {
     const _user = req.user
@@ -44,12 +43,17 @@ router.post("/", ensureAuth, async (req, res) => {
 // @route   GET /shoppingcart
 router.get("/shoppingcart", ensureAuth, async (req, res) => {
   try {
-    // const order = await Orders.find({ user: req.user.id }).lean()
+    const _user = await Users.find({ user: req.user.id })
+      .populate("Cart.orders")
+      .lean()
     res.render("shoppingcart", {
       name: req.user.firstName,
       lastName: req.user.lastName,
       img: req.user.image,
-      user: req.user,
+      cart: req.user.Cart,
+      // orders: _user.Cart.orders,
+      // qnty: _user.Cart.qnty,
+      _user,
     })
   } catch (err) {
     console.error(err)
@@ -68,21 +72,28 @@ router.post("/", ensureAuth, async (req, res) => {
   }
 })
 
-// @desc    DASHBOARD
-// @route   GET /dashboard
-router.get("/shoppingcart", ensureAuth, async (req, res) => {
-  try {
-    const order = await Orders.find({ user: req.user.id }).lean()
-    res.render("shoppingcart", {
-      name: req.user.firstName,
-      lastName: req.user.lastName,
-      order,
-    })
-  } catch (err) {
-    console.error(err)
-    res.render("error/500")
-  }
-})
+// const orders = await Orders.find({ status: "public" })
+// .populate("user")
+// .sort({ createdAt: "desc" })
+// .lean()
+
+// // @desc    DASHBOARD
+// // @route   GET /dashboard
+// router.get("/shoppingcart", ensureAuth, async (req, res) => {
+//   try {
+//     const order = await Orders.find({ user: req.user.id })
+//       .populate("Cart")
+//       .lean()
+//     res.render("shoppingcart", {
+//       name: req.user.firstName,
+//       lastName: req.user.lastName,
+//       order,
+//     })
+//   } catch (err) {
+//     console.error(err)
+//     res.render("error/500")
+//   }
+// })
 
 // @desc  login/landing page
 // @route GET /

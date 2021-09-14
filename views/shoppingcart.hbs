@@ -28,44 +28,38 @@
             </div>
             <div class="row g-4 justify-content-center align-items-center">
                 <div class="col-md-5 text-center text-md-center">
-                    <div class="btn-group">
-                    </div>
+                    <div class="btn-group"></div>
                     <div class="row">
                         <div class="col">
-                            {{#if order}}
+                            {{#if cart}}
                             <table class="striped">
                                 <thead>
                                     <tr>
                                         <th>Title</th>
                                         <th>Price/Kg</th>
-                                        <th>Date</th>
-                                        <th></th>
+                                        <th>Title</th>
+                                        <th>Price/Kg</th>
+                                        <th>Title</th>
+                                        <th>Price/Kg</th>
+
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
-                                    {{#each user.cart}}
+                                    {{#each cart}}
                                     <tr>
-                                        <td><a href="/orders/{{_id}}">{{title}}</a></td>
-                                        <td><Span class="dash-status">{{price}}₪</Span></td>
-                                        <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss'}}</td>
-                                        <td>
-                                            <a href="/orders/edit/{{_id}}" class="btn btn-float grey"><i
-                                                    class="fas fa-edit grey"></i></a>
-                                            <form action="/orders/{{_id}}" method="POST" id="delete-form">
-                                                <input type="hidden" name="_method" value="DELETE"><button type="submit"
-                                                    class="btn dark red"><i class="fas fa-trash"></i>
+                                        {{#each this}}
 
-                                                </button>
-                                            </form>
-                                        </td>
+                                        <td>{{this.qnty}}</td>
+                                        <td>{{this.orders}}</td>
 
-
+                                        {{/each}}
                                     </tr>
-                                    {{/each}}
+                                {{/each}}
+
                                 </tbody>
 
                             </table>
-
                             {{else}}
                             <p>Your cart is empty. </p>
                             {{/if}}

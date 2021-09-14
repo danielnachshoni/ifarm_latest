@@ -18,6 +18,8 @@ module.exports = function (passport) {
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
           Cart: profile.Cart,
+          orders: profile.Cart.orders,
+          qnty: profile.Cart.qnty,
         }
 
         try {
