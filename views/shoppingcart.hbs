@@ -43,27 +43,30 @@
                                         <th>Total payment </th>
                                     </tr>
                                 </thead>
-                                {{#each cart}}
-                                {{#each this}}
                                 <tbody>
+                                {{#each cart}}
+                                    {{#each this}}
                                     <tr>
                                         <td><Span class="dash-status">{{this.prod_name}}</Span></td>
-                                        <td><span>{{this.prod_name}}</span></td>
                                         <td><span>{{this.qnty}} (kg)</span></td>
                                         <td><span>{{this.price}}₪</span></td>
                                         <td><span>{{multiply this.qnty this.price}}₪</span></td>
                                         <td>
-                                            <form action="/{{this._id}}" method="POST" id="delete-form">
+                                            {{!-- <a href="/payment" ></a> --}}
+                                            <form action="/payment/{{this._id}}" method="POST" id="delete-form">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-float blue"><i class="far fa-credit-card blue"></i></button>
+                                            </form>                                            <form action="/{{this._id}}" method="POST" id="delete-form">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn dark red"><i
                                                         class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
-                                       
+
                                     </tr>
-                                </tbody>
-                                 {{/each}}
+                                    {{/each}}
                                 {{/each}}
+                                </tbody>
                             </table>
                             {{else}}
                             <p>Your shopping cart is empty. </p>
@@ -77,5 +80,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html> 
-{{!-- <a href="/payment" class="btn btn-float blue"><i class="far fa-credit-card blue"></i></a> --}}
+</html>

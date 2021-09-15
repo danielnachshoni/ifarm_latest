@@ -98,16 +98,30 @@ router.get("/", ensureGuest, (req, res) => {
 router.get("/payment", ensureAuth, async (req, res) => {
   try {
     const order = await Orders.find({ user: req.user.id }).lean()
+    // console.log(req)
     res.render("payment", {
       name: req.user.firstName,
       lastName: req.user.lastName,
       img: req.user.image,
-      date: req.user.createdAt,
       order,
     })
   } catch (err) {
     console.error(err)
     res.render("error/500")
+  }
+})
+
+//delete item from shopping cart
+router.delete("/payment/:id", ensureAuth, async (req, res) => {
+  try {
+    const _user = req.user
+    console.log(req.user.id)
+    _user.Cart.pull({ _id: req.params.id })
+    _user.save()
+    res.redirect("/payment")
+  } catch (err) {
+    console.error(err)
+    return res.render("error/500")
   }
 })
 
