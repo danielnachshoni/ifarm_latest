@@ -18,17 +18,15 @@ module.exports = function (passport) {
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
           Cart: profile.Cart,
-          // orders: profile.Cart.orders,
-          // qnty: profile.Cart.qnty,
         }
 
         try {
-          let user = await User.findOne({ googleId: profile.id })
+          let user = await User.findOne({ googleId: profile.id }).lean()
 
           if (user) {
             done(null, user)
           } else {
-            user = await User.create(newUser)
+            user = await User.create(newUser).lean()
             done(null, user)
           }
         } catch (err) {
@@ -39,7 +37,7 @@ module.exports = function (passport) {
   )
 
   passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user._id)
   })
 
   passport.deserializeUser((id, done) => {

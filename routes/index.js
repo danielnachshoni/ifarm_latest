@@ -62,13 +62,12 @@ router.delete("/:id", ensureAuth, async (req, res) => {
 // @route   GET /shoppingcart
 router.get("/shoppingcart", ensureAuth, async (req, res) => {
   try {
-    const _user = await Users.find({ user: req.user.id }).lean()
+    const _user = await Users.findById(req.user._id).lean()
     res.render("shoppingcart", {
-      name: req.user.firstName,
-      lastName: req.user.lastName,
-      img: req.user.image,
-      cart: req.user.Cart,
-      _user,
+      name: _user.firstName,
+      lastName: _user.lastName,
+      img: _user.image,
+      cart: _user.Cart,
     })
   } catch (err) {
     console.error(err)
