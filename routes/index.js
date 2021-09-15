@@ -93,4 +93,22 @@ router.get("/", ensureGuest, (req, res) => {
   res.render("login", { layout: "login" })
 })
 
+// @desc    DASHBOARD
+// @route   GET /dashboard
+router.get("/payment", ensureAuth, async (req, res) => {
+  try {
+    const order = await Orders.find({ user: req.user.id }).lean()
+    res.render("payment", {
+      name: req.user.firstName,
+      lastName: req.user.lastName,
+      img: req.user.image,
+      date: req.user.createdAt,
+      order,
+    })
+  } catch (err) {
+    console.error(err)
+    res.render("error/500")
+  }
+})
+
 module.exports = router
